@@ -79,7 +79,7 @@ Vous pouvez aussi fermer les tickets automatiquement à l'intérieur d'un messag
 * L'évaluation portera sur les critères suivants :
 
 ** Respect du protocole de développement donné dans l'énoncé (ouverture du ticket -&gt; écriture des tests -&gt; développement -&gt; commits -&gt; fermeture du ticket).
-
+** Respect des techniques d'implémentation demandées durant le module (**en particulier la gestion des associations bidirectionnelles** )
 ** Qualité des tickets ouverts sur votre projet Gitlab{nbsp}: description du problème, des tests requis et de la solution mise en œuvre.
 ** Qualité du code produit.
 ** Qualité et pertinence des tests unitaires mis en place.
