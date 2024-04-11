@@ -1,1 +1,21 @@
+Tâches principales                          
+
+Mises en place de la structure de base (créations des classes)
+
+Créations des associations entre classes 
+
+                - Création de la classe RefToSalleAttenteUrgence
+                - Création de la classe RefToSalleAttenteNormale
+                - Création de la classe RefToPatientUrgence
+                - Création de la classe RefToPatientNormale
+                
+Implémentation des fonctionnalités de base
+
+                - Ajout d'une salle d'attente 
+                - Ajout d'un patient 
+                - Suppression d'une salle d'attente
+                - Suppression d'un patient 
+                - Liste des salles d'attentes
+                - Liste des patients
+
 
