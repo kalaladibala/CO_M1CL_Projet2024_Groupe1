@@ -4,7 +4,7 @@ public class Patient extends Personne {
     private int no_SecSoc_p;
     private String prenom_p;
     private String adresse_p;
-    private RefToSalleAttenteNormale refToSalleAttenteNormale;
+   
 
     public Patient(int pers_id, String nom, int no_SecSoc_p, String prenom_p, String adresse_p) {
         super(pers_id, nom);
@@ -36,13 +36,4 @@ public class Patient extends Personne {
     public void setAdresse_p(String adresse_p) {
         this.adresse_p = adresse_p;
     }
-
-    public RefToSalleAttenteNormale getRefToSalleAttenteNormale() {
-        return refToSalleAttenteNormale;
-    }
-
-    public void setRefToSalleAttenteNormale(RefToSalleAttenteNormale refToSalleAttenteNormale) {
-        this.refToSalleAttenteNormale = refToSalleAttenteNormale;
-    }
-
 }
