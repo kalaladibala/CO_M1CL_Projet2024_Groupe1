@@ -47,7 +47,7 @@ public class Patient extends Personne {
         this.refToSalleAttenteUrgence = refToSalleAttenteUrgence;
     }
 
- public RefToSalleAttenteNormale getRefToSalleAttenteNormale() {
+    public RefToSalleAttenteNormale getRefToSalleAttenteNormale() {
         return refToSalleAttenteNormale;
     }
 

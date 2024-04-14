@@ -31,7 +31,6 @@ public class RefToSalleAttenteUrgence {
 
 
         basicSet(salleAttenteUrgence);
-        //this.salleAttenteUrgence = salleAttenteUrgence;
         salleAttenteUrgence.getRefToPatientUrgence().basicSet(patient);
         isSet = true;
     }
