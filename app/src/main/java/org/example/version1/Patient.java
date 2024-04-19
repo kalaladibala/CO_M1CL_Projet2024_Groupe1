@@ -1,12 +1,20 @@
-package org.example;
+package org.example.version1;
 
 public class Patient extends Personne {
     private int no_SecSoc_p;
     private String prenom_p;
     private String adresse_p;
 
-   private RefToSalleAttenteUrgence refToSalleAttenteUrgence;
-   private RefToSalleAttenteNormale refToSalleAttenteNormale;
+    final RefToSalleAttenteNormale salleAttenteNormale = new RefToSalleAttenteNormale(this);
+    final RefToSalleAttenteUrgence salleAttenteUrgence = new RefToSalleAttenteUrgence(this);
+
+    public RefToSalleAttenteNormale salleAttenteNormale() {
+		return this.salleAttenteNormale;
+	}
+
+    public RefToSalleAttenteUrgence salleAttenteUrgence() {
+		return this.salleAttenteUrgence;
+	}
 
     public Patient(int pers_id, String nom, int no_SecSoc_p, String prenom_p, String adresse_p) {
         super(pers_id, nom);
@@ -38,6 +46,7 @@ public class Patient extends Personne {
     public void setAdresse_p(String adresse_p) {
         this.adresse_p = adresse_p;
     }
+    /*
 
      public RefToSalleAttenteUrgence getRefToSalleAttenteUrgence() {
         return refToSalleAttenteUrgence;
@@ -53,6 +62,8 @@ public class Patient extends Personne {
 
     public void setRefToSalleAttenteNormale(RefToSalleAttenteNormale refToSalleAttenteNormale) {
         this.refToSalleAttenteNormale = refToSalleAttenteNormale;
-    }
+    }*/
+
+    
 
 }

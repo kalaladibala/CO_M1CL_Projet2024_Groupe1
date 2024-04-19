@@ -1,7 +1,14 @@
-package org.example;
+package org.example.version1;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.example.version1.Patient;
+import org.example.version1.SalleAttente;
+import org.example.version1.RefToSalleAttenteNormale;
+import org.example.version1.RefToSalleAttenteUrgence;
+
 
 public class RefToSalleAttenteUrgenceTest {
     private RefToSalleAttenteUrgence refToSalleAttenteUrgence;

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.version1;
 public class Docteur extends Personne {
     public Docteur(int pers_id, String nom) {
         super(pers_id, nom);

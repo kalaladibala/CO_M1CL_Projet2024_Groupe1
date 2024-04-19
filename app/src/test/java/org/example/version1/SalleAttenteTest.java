@@ -1,8 +1,11 @@
-package org.example;
+package org.example.version1;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import org.example.version1.SalleAttente;
+
+
 
 public class SalleAttenteTest {
 
