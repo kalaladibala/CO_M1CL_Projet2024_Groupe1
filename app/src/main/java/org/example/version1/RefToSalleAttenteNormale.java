@@ -1,16 +1,12 @@
 package org.example.version1;
 
 public class RefToSalleAttenteNormale {
-    private Patient patient;
-    private SalleAttente salleAttenteNormale;
+     Patient patient;
+     SalleAttente salleAttenteNormale;
 
-    public RefToSalleAttenteNormale(Patient patient) {
-        this.patient = patient;
-    }
+    public RefToSalleAttenteNormale(Patient patient) {this.patient = patient; }
 
-    public SalleAttente get() {
-        return salleAttenteNormale;
-    }
+    public SalleAttente get() { return salleAttenteNormale; }
 
     public void set(SalleAttente salleAttenteNormale) {
 
@@ -27,7 +23,7 @@ public class RefToSalleAttenteNormale {
         salleAttenteNormale.patientNormal().basicSet(patient);
     }
 
-    public void basicSet(SalleAttente salle){this.salleAttenteNormale = salle;}
+    public void basicSet(SalleAttente salle){ this.salleAttenteNormale = salle; }
 
     public void unset() {
         if (!isSet())
@@ -36,7 +32,7 @@ public class RefToSalleAttenteNormale {
             this.basicUnset();
     }
 
-    public void basicUnset() {this.salleAttenteNormale=null;}
+    public void basicUnset() { this.salleAttenteNormale=null; }
 
-    public boolean isSet() {return this.salleAttenteNormale != null; }
+    public boolean isSet() { return this.salleAttenteNormale != null; }
 }

@@ -4,43 +4,57 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.example.version1.Patient;
-import org.example.version1.SalleAttente;
-import org.example.version1.RefToSalleAttenteNormale;
-import org.example.version1.RefToSalleAttenteUrgence;
-
-
 public class RefToPatientNormalTest {
-    private RefToPatientNormal refToPatientNormal;
     private SalleAttente salleAttente;
-    private Patient patient;
+    private Patient patient1;
+    private Patient patient2;
+    private RefToPatientNormal refToPatientNormal;
 
     @BeforeEach
-    public void setUp() {
-        salleAttente = new SalleAttente(1, "Salle d'attente", "Localisation", 10);
-        patient = new Patient(1, "John Doe", 123456789, "John", "Adresse");
+    void setUp() {
+        salleAttente = new SalleAttente(1, "Salle normale", "Localisation", 10);
+        patient1 = new Patient(1, "John", 12345, "Doe", "Adresse 1");
+        patient2 = new Patient(2, "Jane", 67890, "Smith", "Adresse 2");
         refToPatientNormal = new RefToPatientNormal(salleAttente);
     }
 
     @Test
-    public void testLierPatient() {
-        assertFalse(refToPatientNormal.isSet(), "L'association ne doit pas être initialisée");
+    void testLierPatient() {
+        refToPatientNormal.lierPatient(patient1);
+        assertTrue(refToPatientNormal.isSet());
+        assertTrue(patient1.salleAttenteNormale().isSet());
+        assertEquals(1, refToPatientNormal.get().size());
+        assertTrue(refToPatientNormal.get().contains(patient1));
 
-        refToPatientNormal.lierPatient(patient);
+        // Test d'ajout d'un patient déjà lié
+        refToPatientNormal.lierPatient(patient1);
+        assertEquals(1, refToPatientNormal.get().size()); // La taille ne doit pas changer
 
-        assertTrue(refToPatientNormal.isSet(), "L'association doit être initialisée");
-        assertEquals(1, refToPatientNormal.get().size(), "Le nombre de patients dans la liste doit être 1");
-        assertTrue(refToPatientNormal.get().contains(patient), "La liste doit contenir le patient ajouté");
+        // Test d'ajout d'un nouveau patient
+        refToPatientNormal.lierPatient(patient2);
+        assertTrue(refToPatientNormal.isSet());
+        assertTrue(patient2.salleAttenteNormale().isSet());
+        assertEquals(2, refToPatientNormal.get().size());
+        assertTrue(refToPatientNormal.get().contains(patient2));
     }
 
     @Test
-    public void testLierPatient() {
-        assertFalse(refToPatientNormal.isSet(), "L'association ne doit pas être initialisée");
+    void testDelierPatient() {
+        // Test de délier un patient non lié
+        refToPatientNormal.delierPatient();
+        assertFalse(refToPatientNormal.isSet());
 
-        refToPatientNormal.lierPatient(patient);
+        // Lier quelques patients
+        refToPatientNormal.lierPatient(patient1);
+        refToPatientNormal.lierPatient(patient2);
+        assertTrue(refToPatientNormal.isSet());
+        assertEquals(2, refToPatientNormal.get().size());
 
-        assertTrue(refToPatientNormal.isSet(), "L'association doit être initialisée");
-        assertEquals(1, refToPatientNormal.get().size(), "Le nombre de patients dans la liste doit être 1");
-        assertTrue(refToPatientNormal.get().contains(patient), "La liste doit contenir le patient ajouté");
+        // Test de délier les patients
+        refToPatientNormal.delierPatient();
+        assertFalse(refToPatientNormal.isSet());
+        assertFalse(patient1.salleAttenteNormale().isSet());
+        assertFalse(patient2.salleAttenteNormale().isSet());
+        assertTrue(refToPatientNormal.get().isEmpty());
     }
 }

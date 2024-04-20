@@ -1,15 +1,17 @@
-package org.example.version1;
+package org.example.version2;
 
 public class SalleAttente {
     private int no_s;
     private String nom_s;
     private String localisation_s;
     private int nb_Places_s;
-    //final RefToPatientUrgence refToPatientUrgence;
-    //final RefToPatientNormal refToPatientNormal;
-    RefToPatientNormal patientNormal = new RefToPatientNormal(this);
-    RefToPatientUrgence patientUrgence = new RefToPatientUrgence(this);
+    
+    RefTo<Patient, SalleAttente> patient = new RefTo<>(this, Patient::salleAttente);
 
+    public RefTo<Patient, SalleAttente> patient() {
+        return patient;
+    }
+     
 
     public SalleAttente(int no_s, String nom_s, String localisation_s, int nb_Places_s) {
         this.no_s = no_s;
@@ -17,11 +19,6 @@ public class SalleAttente {
         this.localisation_s = localisation_s;
         this.nb_Places_s = nb_Places_s;
     }
-
-    
-    public RefToPatientNormal patientNormal() { return this.patientNormal; }
-
-    public RefToPatientUrgence patientUrgence() { return this.patientUrgence; }
 
     public int getNo_s() {
         return no_s;
@@ -54,26 +51,4 @@ public class SalleAttente {
     public void setNb_Places_s(int nb_Places_s) {
         this.nb_Places_s = nb_Places_s;
     }
-    /*
-
-    public RefToPatientUrgence getRefToPatientUrgence() {
-        return refToPatientUrgence;
-    }
-
-    public void setRefToPatientUrgence(RefToPatientUrgence refToPatientUrgence) {
-        this.refToPatientUrgence = refToPatientUrgence;
-    }
-
-     public RefToPatientNormal getRefToPatientNormal() {
-        return refToPatientNormal;
-    }
-
-    public void setRefToPatientNormal(RefToPatientNormal refToPatientNormal) {
-        this.refToPatientNormal = refToPatientNormal;
-    }*/
-
-    
-    
-
-    
 }

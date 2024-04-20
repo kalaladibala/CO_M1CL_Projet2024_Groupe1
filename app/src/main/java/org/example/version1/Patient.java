@@ -8,13 +8,9 @@ public class Patient extends Personne {
     final RefToSalleAttenteNormale salleAttenteNormale = new RefToSalleAttenteNormale(this);
     final RefToSalleAttenteUrgence salleAttenteUrgence = new RefToSalleAttenteUrgence(this);
 
-    public RefToSalleAttenteNormale salleAttenteNormale() {
-		return this.salleAttenteNormale;
-	}
+    public RefToSalleAttenteNormale salleAttenteNormale() { return this.salleAttenteNormale; }
 
-    public RefToSalleAttenteUrgence salleAttenteUrgence() {
-		return this.salleAttenteUrgence;
-	}
+    public RefToSalleAttenteUrgence salleAttenteUrgence() { return this.salleAttenteUrgence; }
 
     public Patient(int pers_id, String nom, int no_SecSoc_p, String prenom_p, String adresse_p) {
         super(pers_id, nom);

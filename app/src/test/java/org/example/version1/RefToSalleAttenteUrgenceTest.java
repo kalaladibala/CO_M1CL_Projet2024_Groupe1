@@ -9,36 +9,58 @@ import org.example.version1.SalleAttente;
 import org.example.version1.RefToSalleAttenteNormale;
 import org.example.version1.RefToSalleAttenteUrgence;
 
-
 public class RefToSalleAttenteUrgenceTest {
-    private RefToSalleAttenteUrgence refToSalleAttenteUrgence;
-    private Patient patient;
     private SalleAttente salleAttente;
+    private Patient patient;
+    private RefToSalleAttenteUrgence refToSalleAttenteUrgence;
 
     @BeforeEach
-    public void setUp() {
-        patient = new Patient(1, "NomPatient", 12345, "PrenomPatient", "AdressePatient");
-        salleAttente = new SalleAttente(1, "NomSalle", "LocalisationSalle", 10);
-        refToSalleAttenteUrgence = new RefToSalleAttenteUrgence(patient, salleAttente);
+    void setUp() {
+        salleAttente = new SalleAttente(1, "Salle urgence", "Localisation", 10);
+        patient = new Patient(1, "John", 12345, "Doe", "Adresse 1");
+        refToSalleAttenteUrgence = new RefToSalleAttenteUrgence(patient);
     }
 
     @Test
-    public void testGetSalleAttenteUrgence() {
-        assertEquals(salleAttente, refToSalleAttenteUrgence.getSalleAttenteUrgence());
-    }
+    void testSet() {
+        refToSalleAttenteUrgence.set(salleAttente);
+        assertTrue(refToSalleAttenteUrgence.isSet());
+        assertEquals(salleAttente, refToSalleAttenteUrgence.get());
+        assertTrue(salleAttente.patientUrgence().isSet());
+        assertEquals(1, salleAttente.patientUrgence().get().size());
+        assertTrue(salleAttente.patientUrgence().get().contains(patient));
 
-    @Test
-    public void testSetSalleAttenteUrgence() {
-        SalleAttente nouvelleSalleAttente = new SalleAttente(2, "NouvelleSalle", "NouvelleLocalisation", 15);
-        refToSalleAttenteUrgence.setSalleAttenteUrgence(nouvelleSalleAttente);
-        assertEquals(nouvelleSalleAttente, refToSalleAttenteUrgence.getSalleAttenteUrgence());
-    }
+        // Test de réaffectation à la même salle d'attente
+        refToSalleAttenteUrgence.set(salleAttente);
+        assertTrue(refToSalleAttenteUrgence.isSet());
+        assertEquals(salleAttente, refToSalleAttenteUrgence.get());
+        assertTrue(salleAttente.patientUrgence().isSet());
+        assertEquals(1, salleAttente.patientUrgence().get().size());
+        assertTrue(salleAttente.patientUrgence().get().contains(patient));
 
-    @Test
-    public void testUnset() {
+        // Test de désaffectation
         refToSalleAttenteUrgence.unset();
-        assertNull(refToSalleAttenteUrgence.getSalleAttenteUrgence());
+        assertFalse(refToSalleAttenteUrgence.isSet());
+        assertNull(refToSalleAttenteUrgence.get());
+        assertFalse(salleAttente.patientUrgence().isSet());
+        assertTrue(salleAttente.patientUrgence().get().isEmpty());
     }
 
-    
+    @Test
+    void testUnset() {
+        // Test de unset quand non défini
+        refToSalleAttenteUrgence.unset();
+        assertFalse(refToSalleAttenteUrgence.isSet());
+
+        // Liaison avec une salle d'attente urgence
+        refToSalleAttenteUrgence.set(salleAttente);
+        assertTrue(refToSalleAttenteUrgence.isSet());
+
+        // Désaffectation
+        refToSalleAttenteUrgence.unset();
+        assertFalse(refToSalleAttenteUrgence.isSet());
+        assertNull(refToSalleAttenteUrgence.get());
+        assertFalse(salleAttente.patientUrgence().isSet());
+        assertTrue(salleAttente.patientUrgence().get().isEmpty());
+    }
 }

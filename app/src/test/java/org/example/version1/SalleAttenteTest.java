@@ -18,18 +18,18 @@ public class SalleAttenteTest {
         assertEquals(1, salle.getNo_s());
         assertEquals("Salle A", salle.getNom_s());
         assertEquals("Bâtiment principal", salle.getLocalisation_s());
-        assertEquals(50, salle.getnb_Places_s());
+        assertEquals(50, salle.getNb_Places_s());
 
         // Modification des valeurs avec les mutateurs
         salle.setNo_s(2);
         salle.setNom_s("Salle B");
         salle.setLocalisation_s("Aile nord");
-        salle.setnb_Places_s(100);
+        salle.setNb_Places_s(100);
 
         // Vérification que les valeurs ont été correctement modifiées
         assertEquals(2, salle.getNo_s());
         assertEquals("Salle B", salle.getNom_s());
         assertEquals("Aile nord", salle.getLocalisation_s());
-        assertEquals(100, salle.getnb_Places_s());
+        assertEquals(100, salle.getNb_Places_s());
     }
 }

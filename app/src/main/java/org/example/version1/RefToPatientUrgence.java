@@ -4,23 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RefToPatientUrgence {
-    private SalleAttente salleAttente; // Relation 1..1 avec SalleAttente
-    private List<Patient> patients; // Relation 0..* avec Patient
+    SalleAttente salleAttente; // Relation 1..1 avec SalleAttente
+    List<Patient> patients; // Relation 0..* avec Patient
 
     public RefToPatientUrgence(SalleAttente salleAttente) {
         this.salleAttente = salleAttente;
         this.patients = new ArrayList<>();
     }
 
-    public List<Patient> get() {
-        return patients;
-    }
+    public List<Patient> get() { return patients; }
 
     public void lierPatient(Patient newPatient) {
         if (patients.contains(newPatient))
             return;
 
-        if (newPatient != null && isSet())
+        if (newPatient == null && isSet())
             this.delierPatient();
 
         if (newPatient.salleAttenteUrgence().isSet())

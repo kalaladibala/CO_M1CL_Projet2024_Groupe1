@@ -9,42 +9,58 @@ import org.example.version1.SalleAttente;
 import org.example.version1.RefToSalleAttenteNormale;
 import org.example.version1.RefToSalleAttenteUrgence;
 
-
 public class RefToSalleAttenteNormaleTest {
-    private RefToSalleAttenteNormale refToSalleAttenteNormale;
-    private Patient patient;
     private SalleAttente salleAttente;
+    private Patient patient;
+    private RefToSalleAttenteNormale refToSalleAttenteNormale;
 
     @BeforeEach
-    public void setUp() {
-        patient = new Patient(1, "NomPatient", 12345, "PrenomPatient", "AdressePatient");
-        salleAttente = new SalleAttente(1, "NomSalle", "LocalisationSalle", 10);
-        refToSalleAttenteNormale = new RefToSalleAttenteNormale(patient, salleAttente);
+    void setUp() {
+        salleAttente = new SalleAttente(1, "Salle normale", "Localisation", 10);
+        patient = new Patient(1, "John", 12345, "Doe", "Adresse 1");
+        refToSalleAttenteNormale = new RefToSalleAttenteNormale(patient);
     }
 
     @Test
-    public void testGetSalleAttenteNormale() {
+    void testSet() {
+        refToSalleAttenteNormale.set(salleAttente);
+        assertTrue(refToSalleAttenteNormale.isSet());
         assertEquals(salleAttente, refToSalleAttenteNormale.get());
-    }
+        assertTrue(salleAttente.patientNormal().isSet());
+        assertEquals(1, salleAttente.patientNormal().get().size());
+        assertTrue(salleAttente.patientNormal().get().contains(patient));
 
-     @Test
-    public void testSetSalleAttente() {
-        assertNull(refToSalleAttenteNormale.get(), "L'association doit être initialisée à null");
-
+        // Test de réaffectation à la même salle d'attente
         refToSalleAttenteNormale.set(salleAttente);
+        assertTrue(refToSalleAttenteNormale.isSet());
+        assertEquals(salleAttente, refToSalleAttenteNormale.get());
+        assertTrue(salleAttente.patientNormal().isSet());
+        assertEquals(1, salleAttente.patientNormal().get().size());
+        assertTrue(salleAttente.patientNormal().get().contains(patient));
 
-        assertNotNull(refToSalleAttenteNormale.get(), "L'association doit être initialisée");
-        assertEquals(salleAttente, refToSalleAttenteNormale.get(), "L'association doit être la salle d'attente spécifiée");
+        // Test de désaffectation
+        refToSalleAttenteNormale.unset();
+        assertFalse(refToSalleAttenteNormale.isSet());
+        assertNull(refToSalleAttenteNormale.get());
+        assertFalse(salleAttente.patientNormal().isSet());
+        assertTrue(salleAttente.patientNormal().get().isEmpty());
     }
 
     @Test
-    public void testUnsetSalleAttente() {
-        refToSalleAttenteNormale.set(salleAttente);
-
-        assertNotNull(refToSalleAttenteNormale.get(), "L'association doit être initialisée");
-
+    void testUnset() {
+        // Test de unset quand non défini
         refToSalleAttenteNormale.unset();
+        assertFalse(refToSalleAttenteNormale.isSet());
 
-        assertNull(refToSalleAttenteNormale.get(), "L'association doit être réinitialisée à null");
+        // Liaison avec une salle d'attente normale
+        refToSalleAttenteNormale.set(salleAttente);
+        assertTrue(refToSalleAttenteNormale.isSet());
+
+        // Désaffectation
+        refToSalleAttenteNormale.unset();
+        assertFalse(refToSalleAttenteNormale.isSet());
+        assertNull(refToSalleAttenteNormale.get());
+        assertFalse(salleAttente.patientNormal().isSet());
+        assertTrue(salleAttente.patientNormal().get().isEmpty());
     }
 }
