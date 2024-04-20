@@ -8,6 +8,11 @@ Créations des associations entre classes
                 - Création de la classe RefToSalleAttenteNormale
                 - Création de la classe RefToPatientUrgence
                 - Création de la classe RefToPatientNormale
+
+Création d'une classe générique pour les associations
+ 
+                - Création de la classe RefTo
+
                 
 Implémentation des fonctionnalités de base
 
